@@ -1,0 +1,20 @@
+Resources:
+  oliveinstance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-03caa3f860895f82e
+      Tags:
+        - Key: "Name"
+          Value: !Join [ "-", [ black, olives, are, tasty ] ]
+      SecurityGroups: 
+        - !Ref oliveSecurityGroup
+  oliveSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0

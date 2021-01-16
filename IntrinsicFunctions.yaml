@@ -1,0 +1,9 @@
+Resources:
+  oliveinstance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-062f7200baf2fa504
+      Tags:
+        - Key: "Name"
+          Value: !Join [ "-", [ black, olives, are, tasty ] ]

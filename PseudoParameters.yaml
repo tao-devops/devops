@@ -1,0 +1,23 @@
+Resources:
+  oliveinstance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-03caa3f860895f82e
+      SecurityGroups: 
+        - !Ref oliveSecurityGroup
+      Tags:
+        - Key: "Name"
+          Value: !Join 
+            - ""
+            - - "olive instance in "
+              - !Ref AWS::Region
+  oliveSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: "22"
+          ToPort: "22"
+          CidrIp: 183.83.171.109/32
